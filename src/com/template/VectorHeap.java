@@ -3,20 +3,30 @@ package com.template;
 import java.util.Vector;
 
 /**
- * Implementación de una cola de prioridad usando un heap almacenado en un Vector.
- * @param <E> Tipo de elementos, debe ser Comparable.
+ * Clase que implementa una cola con prioridad que está dentro de un vector.
+ * @param <E> Tipo de elemento guardado, que debe poder ser comparables entre sí.
+ * @author Henry Guzmán
+ * @version 2.0
+ * @since 2026-04-02
  */
+
 public class VectorHeap<E extends Comparable<E>> implements PriorityQueue<E> {
 
-    private Vector<E> heap; // Almacena el heap
+	/**
+	 * Estructura interna del almacenamiento de los datos.
+	 */
+    private Vector<E> heap;
 
+    /**
+     * Constructor principal de la clase.
+     */
     public VectorHeap() {
         heap = new Vector<>();
     }
 
     /**
-     * Constructor que recibe un Vector inicial y lo convierte en heap.
-     * @param v Vector inicial.
+     * Constructor que usa un vector inicial y lo convierte en una cola con prioridad.
+     * @param v Vector inicial a usar como base de datos.
      */
     public VectorHeap(Vector<E> v) {
         heap = new Vector<>(v);
@@ -26,8 +36,8 @@ public class VectorHeap<E extends Comparable<E>> implements PriorityQueue<E> {
     }
 
     /**
-     * Subir un elemento en el heap.
-     * @param indice Posición del elemento.
+     * Método para subir un elemento a la cola con prioridad, usado luego para insertar un elemento en la última posición del vector.
+     * @param indice Posición del elemento que se debe subir.
      */
     protected void percolateUp(int indice) {
         while (indice > 0) {
@@ -39,8 +49,8 @@ public class VectorHeap<E extends Comparable<E>> implements PriorityQueue<E> {
     }
 
     /**
-     * Bajar un elemento en el heap.
-     * @param indice Posición del elemento.
+     * Método para bajar un elemento en la cola con prioridad, usado luego de eliminar la raíz del vector y colocar el último elemento en la mayor altura posible.
+     * @param indice Posición del elemento que se debe bajar.
      */
     protected void percolateDown(int indice) {
         int hijo;
@@ -55,7 +65,9 @@ public class VectorHeap<E extends Comparable<E>> implements PriorityQueue<E> {
     }
 
     /**
-     * Intercambia dos elementos en el heap.
+     * Método para intercambiar dos elementos dentro del vector.
+     * @param i Índice del primer elemento a intercambiar.
+     * @param j Índice del segundo elemento a intercambiar.
      */
     private void swap(int i, int j) {
         E temp = heap.get(i);
@@ -63,12 +75,21 @@ public class VectorHeap<E extends Comparable<E>> implements PriorityQueue<E> {
         heap.set(j, temp);
     }
 
+    /**
+	 * Método para añadir un elemento nuevo a la cola con prioridad.
+	 * @param elemento Elemento a agregar a la cola.
+	 */
     @Override
     public void add(E elemento) {
         heap.add(elemento);
         percolateUp(heap.size() - 1);
     }
 
+    /**
+     * Método para eliminar el elemento de mayor prioridad en la cola.
+     * @return Elemento de mayor prioridad en la cola.
+     * @throws Error que indica que la cola actualmente esta vacía (se necesita al menos un elemento para ejecutar el método).
+     */
     @Override
     public E remove() {
         if (isEmpty()) {
@@ -83,16 +104,28 @@ public class VectorHeap<E extends Comparable<E>> implements PriorityQueue<E> {
         return min;
     }
 
+    /**
+     * Método que verifica si la cola con prioridad está vacía.
+     * @return Devuelve un valor booleano que indica si la cola esta vacía (True si lo esta).
+     */
     @Override
     public boolean isEmpty() {
         return heap.isEmpty();
     }
 
+    /**
+     * Método para devolver la cantidad de elementos en la cola con prioridad.
+     * @return Número de elementos dentro de la cola con prioridad.
+     */
     @Override
     public int size() {
         return heap.size();
     }
 
+    /**
+     * Método para devolver el elemento de mayor prioridad en la cola sin eliminarlo.
+     * @return Elemento de mayor prioridad en la cola.
+     */
     @Override
     public E peek() {
         if (isEmpty()) return null;

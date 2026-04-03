@@ -5,7 +5,18 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Scanner;
 
+/**
+ * Programa principal que usa implementación de VectorHeap para gestionar la atención de pacientes en el hospital.
+ * @author Henry Guzmán
+ * @version 2.0
+ * @since 2026-04-02
+ */
+
 public class EmergenciasConVectorHeap {
+	/**
+	 * Método principal, que ejecuta la interfaz a presentar al usuario.
+	 * @param args Argumentos de la línea de comandos para ejecución del método.
+	 */
     public static void main(String[] args) {
         VectorHeap<Paciente> colaPacientes = new VectorHeap<>();
         cargarPacientes("pacientes.txt", colaPacientes);
@@ -53,6 +64,11 @@ public class EmergenciasConVectorHeap {
         scanner.close();
     }
 
+    /**
+     * Método para cargar a cada uno de los pacientes del hospital desde archivos de texto.
+     * @param archivo Archivo de texto en donde estan lo datos de cada uno de los pacientes (nombre, síntoma y código de prioridad).
+     * @param cola Cola de prioridad donde se almacenaran cada uno de los pacientes.
+     */
     private static void cargarPacientes(String archivo, VectorHeap<Paciente> cola) {
         try (BufferedReader br = new BufferedReader(new FileReader(archivo))) {
             String linea;

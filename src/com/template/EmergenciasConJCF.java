@@ -6,7 +6,18 @@ import java.io.IOException;
 import java.util.PriorityQueue;
 import java.util.Scanner;
 
+/**
+ * Programa principal que usa la implementación PriorityQueue para gestionar a los pacientes del hospital.
+ * @author Henry Guzmán
+ * @version 2.0
+ * @since 2026-04-02
+ */
+
 public class EmergenciasConJCF {
+	/**
+	 * Método principal del programa, que ejecuta la interfaz para el usuario.
+	 * @param args Argumentos de línea de comandos, usados para la ejecución de la interfaz.
+	 */
     public static void main(String[] args) {
         PriorityQueue<Paciente> colaPacientes = new PriorityQueue<>();
         cargarPacientes("pacientes.txt", colaPacientes);
@@ -54,6 +65,11 @@ public class EmergenciasConJCF {
         scanner.close();
     }
 
+    /**
+     * Método para cargar a cada uno de los pacientes del hospital desde archivos de texto.
+     * @param archivo Archivo de texto en donde estan lo datos de cada uno de los pacientes (nombre, síntoma y código de prioridad).
+     * @param cola Cola de prioridad donde se almacenaran cada uno de los pacientes.
+     */
     private static void cargarPacientes(String archivo, PriorityQueue<Paciente> cola) {
         try (BufferedReader br = new BufferedReader(new FileReader(archivo))) {
             String linea;

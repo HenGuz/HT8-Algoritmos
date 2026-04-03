@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"com.template","l":"EmergenciasConJCF"},{"p":"com.template","l":"EmergenciasConVectorHeap"},{"p":"com.template","l":"Paciente"},{"p":"com.template","l":"PriorityQueue"},{"p":"com.template","l":"VectorHeap"}];updateSearchResults();
